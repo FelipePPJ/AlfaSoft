@@ -13,14 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin', 'AdminController@index')->name('admin');
+Route::any('/admin/new', 'AdminController@new')->name('new');
+Route::any('/admin/edit/{user_id?}', 'AdminController@edit')->name('edit');
+Route::get('/admin/delete/{user_id?}', 'AdminController@delete')->name('delete');
